@@ -1,0 +1,8 @@
+CompileFlags:
+  Add:
+    # 标准 C 库头文件路径
+    - -I"C:\Users\Nanachilil_zyy\Desktop\mingw64\x86_64-w64-mingw32\include"
+    # GCC 扩展头文件路径（替换版本号）
+    - -I"C:\Users\Nanachilil_zyy\Desktop\mingw64\lib\gcc\x86_64-w64-mingw32\15.1.0\include"
+    # 适配 MinGW 目标平台
+    - --target=x86_64-w64-mingw32
