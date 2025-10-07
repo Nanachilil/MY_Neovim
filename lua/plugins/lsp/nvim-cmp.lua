@@ -6,7 +6,7 @@ return {
 		cmd = { "Copilot", "CopilotPanel", "CopilotAuth" },
 		opts = {
 			suggestion = { enabled = true, auto_trigger = true },
-			anel = { enabled = false }, -- 只要 inline 建议，无侧边面板
+			panel = { enabled = false }, -- 只要 inline 建议，无侧边面板
 			server_opts_overrides = {
 			},
 		},
@@ -20,6 +20,11 @@ return {
 			end
 			if is_online() then
 				require("copilot").setup(opts)
+				local suggestion = require("copilot.suggestion")
+				vim.keymap.set("i", "<C-]>", function() suggestion.dismiss() end, { desc = "Dismiss Copilot suggestion" })
+				vim.keymap.set("i", "<C-l>", function() suggestion.accept() end, { desc = "Accept Copilot suggestion" })
+				-- vim.keymap.set("i", "<M-]>", function() suggestion.next() end, { desc = "Next Copilot suggestion" })
+				-- vim.keymap.set("i", "<M-[>", function() suggestion.prev() end, { desc = "Previous Copilot suggestion" })
 			else
 				vim.notify("Copilot is not available offline", vim.log.levels.WARN)
 			end
