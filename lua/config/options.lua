@@ -25,11 +25,16 @@ vim.opt.termguicolors = true --启用真彩色
 -- 设置制表符和缩进
 vim.opt.autoindent = true -- 自动缩进
 vim.opt.smartindent = true -- 智能缩进
-vim.opt.cindent = true -- C 语言风格的缩进
-vim.o.tabstop = 4 -- Tab键的宽度为?空格
-vim.opt.softtabstop = 4 -- 编辑时 Tab 键的宽度为 4 个空格
-vim.o.shiftwidth = 4 -- 自动缩进的宽度为?空格
-vim.o.expandtab = false -- Tab键转换为空格
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "c", "cpp", "h", "hpp" },
+  callback = function()
+    vim.opt.cindent = true -- C 语言风格的缩进
+  end,
+})
+vim.o.tabstop = 4 -- Tab键的宽度为 ? 个空格
+vim.opt.softtabstop = 4 -- 编辑时 Tab 键的宽度为 ? 个空格
+vim.o.shiftwidth = 4 -- 自动缩进的宽度为 ? 空格
+vim.o.expandtab = true -- Tab键转换为空格
 
 --编码相关
 vim.opt.encoding = "utf-8" -- 默认编码为 UTF-8

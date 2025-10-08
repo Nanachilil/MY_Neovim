@@ -6,9 +6,9 @@ return {
 		opts = {
 			formatters_by_ft = {
 				lua = { "stylua" },
-				python = { "black" },
-				c = { "clang-format" },
-				cpp = { "clang-format" },
+				python = { "yapf" },
+				c = { "clang_format" },
+				cpp = { "clang_format" },
 				markdown = { "prettier" },
 				html = { "prettier" },
 				css = { "prettier" },
@@ -27,10 +27,20 @@ return {
 					args = { "-", "--stdin-filename", "$FILENAME", "--quiet" }, -- 新增 --stdin-filepath 和 $FILENAME
 					stdin = true, -- 启用标准输入
 				},
+						-- clang_format = {
+						-- 	command = "clang-format",
+						-- 	args = { "--style=Google", "--stdin-filename", "$FILENAME", "-" },
+						-- 	-- args = { "--stdin-filename", "$FILENAME", "-" }, -- 新增 --stdin-filepath 和 $FILENAME
+						-- 	stdin = true, -- 启用标准输入
+						-- },
 				clang_format = {
 					command = "clang-format",
-					args = { "--stdin-filename", "$FILENAME", "-" }, -- 新增 --stdin-filepath 和 $FILENAME
-					stdin = true, -- 启用标准输入
+					args = {
+						"--assume-filename", "$FILENAME",
+						"--style={BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 110, PointerAlignment: Left, BreakBeforeBraces: Attach, AllowShortIfStatementsOnASingleLine: false, AllowShortLoopsOnASingleLine: false, AllowShortFunctionsOnASingleLine: Empty, SpacesBeforeTrailingComments: 2, IndentCaseLabels: false, DerivePointerAlignment: false}",
+						"-"
+					},
+					stdin = true,
 				},
 				prettier = {
 					command = "prettier",
@@ -40,6 +50,11 @@ return {
 					},
 					stdin = true, -- 启用标准输入
 					timeout = 3000, -- 10s超时上限
+				},
+				yapf = {
+					command = "yapf",
+					args = { "--style=google", "--quiet" },
+					stdin = true,
 				},
 				notify_on_error = true,
 			},
