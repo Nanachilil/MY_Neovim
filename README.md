@@ -1,5 +1,14 @@
 # DEMO 展示
 
+优点不知道展示什么好。
+比较好用的功能：
+
+1. LSP
+2. Copliot 提示
+3. 全局模糊搜索
+4. 文件目录，代码outline
+   ...
+
 <video src="https://github.com/user-attachments/assets/050fc98b-03ff-4fea-adf3-93759610573f"
        controls
        width="640"
