@@ -69,7 +69,8 @@ return {
 				{ name = "luasnip" }, -- Snippet source
 			}
 			opts.mapping = {
-				["<CR>"] = require("cmp").mapping.confirm({ select = true }),
+				["<C-k>"] = require("cmp").mapping.confirm({ select = true }),
+				["<C-["] = require("cmp").mapping.abort(),
 				["<Tab>"] = require("cmp").mapping.select_next_item(),
 				["<S-Tab>"] = require("cmp").mapping.select_prev_item(),
 			}
